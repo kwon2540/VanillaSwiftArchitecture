@@ -9,6 +9,8 @@ import Foundation
 
 @MainActor
 public protocol Store: Identifiable, Hashable {
+    associatedtype ViewState
+    associatedtype State
     associatedtype Action
 
     func reduce(action: Action)
