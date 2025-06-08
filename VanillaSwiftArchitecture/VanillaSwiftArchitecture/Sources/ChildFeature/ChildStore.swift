@@ -37,12 +37,10 @@ public class ChildStore: Store {
 
     public init(state: State) {
         self.state = state
-
-        super.init()
     }
 
     // Action
-    func send(_ action: Action) {
+    public func reduce(action: Action) {
         switch action {
         case .none:
             break

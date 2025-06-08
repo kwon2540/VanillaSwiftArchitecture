@@ -27,7 +27,7 @@ public class ParentStore: Store {
         public init() {}
     }
 
-    enum Action {
+    public enum Action {
         case modalButtonTapped
         case pushButtonTapped
     }
@@ -54,12 +54,10 @@ public class ParentStore: Store {
 
     public init(state: State) {
         self.state = state
-
-        super.init()
     }
 
     // Action
-    func send(_ action: Action) {
+    public func reduce(action: Action) {
         switch action {
         case .modalButtonTapped:
             modalAction()

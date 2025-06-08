@@ -7,14 +7,23 @@
 
 import Foundation
 
-open class Store: Identifiable, Hashable {
-    public init() {}
+@MainActor
+public protocol Store: Identifiable, Hashable {
+    associatedtype Action
 
-    public func hash(into hasher: inout Hasher) {
+    func reduce(action: Action)
+}
+
+extension Store {
+    public func send(_ action: Action) {
+        reduce(action: action)
+    }
+
+    nonisolated public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
 
-    public static func == (lhs: Store, rhs: Store) -> Bool {
+    nonisolated public static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.id == rhs.id
     }
 }
